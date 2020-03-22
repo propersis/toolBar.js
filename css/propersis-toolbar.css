@@ -1,0 +1,17 @@
+.tb-bar {margin:0;padding:2px;border:1px solid #cccccc}
+.tb-bar::after {content:"";clear:both;display:table}
+.tb-bar-close {float:right}
+.tb-hidden {display:none}
+.tb-group {border-right:1px solid #cccccc;padding:4px 4px}
+.tb-group-right {float:right;padding:4px 4px}
+.tb-item {padding:4px;margin:2px;font-size:20px;
+  font-family:Montserrat,Arial,sans-serif;text-decoration:none}
+.tb-item-right {float:right}
+.tb-item a {text-decoration:none}
+.tb-disabled a {color:#cccccc !important}
+.tb-item-state {background-color:#cccccc}
+.tb-tooltip {display:none;position:absolute;max-width:300px;height:auto;display:none;
+  background-color:#ffcc00;padding:10px 12px;border-radius:0 10px 10px 10px;
+  font-size:17px;font-family:Montserrat,Arial,sans-serif}
+.tb-tooltip-right {border-radius:10px 0 10px 10px}
+.tb-tooltip-dimm {background-color:#eeeeee;color:#999999}
