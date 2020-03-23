@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="" />
+<meta http-equiv="Content-Language" content="es" />
+
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<title>propersis-40.js toolBar2 Lab</title>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/propersis-toolbar.css" />
+
+<style type="text/css">
+.test-bar2 {margin:8px 0;border:1px solid #cccccc;padding:2px;overflow:auto}
+.sample1 {margin:8px 0;border:1px solid #cccccc;padding:2px;overflow:auto}
+.sample2 {margin:8px 0;border:1px solid #cccccc;padding:2px;overflow:auto}
+.sampleX {margin:30px 0;border:1px solid #cccccc;padding:2px;overflow:auto}
+.svg-icon {max-height:30px;max-width:30px;}
+</style>
+
+</head>
+
+<body>
+<div></div>
+<div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1>propersis-40.js toolBar2 Lab</h1>
+  </div>
+  <div class="clearfix"></div>
+  <div class="col-sm-12">
+    <div class="test-bar2" id="t1"></div>
+    <div style="height:200px"></div>
+    <div class="test-bar2" id="t2"></div>
+    <button class="btn btn-primary btnTest1"> Test 1</button>
+    <button class="btn btn-primary btnTest2"> Test 2</button>
+    <button class="btn btn-primary btnTest3"> Test 3</button>
+  </div>
+  <div class="clearfix" style="height:100px"></div>
+</div>
+</div>
+
+
+<!-- STR_NEEDEDSCRIPTS -->
+
+<script type="text/javascript" src="//propersys.com/res/jquery-3.3.1/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/js/propersis-toolbar.js"></script>
+
+<script type="text/javascript">
+//////////////////////////////////////////////////////////
+// TEST +++
+//////////////////////////////////////////////////////////
+$(document).ready(function () {
+$(document).on('click', '.btnTest1', function() {
+  $('.test-bar2').toolBar({
+    init:function($barCont, TB, mainSpec, oSpec) {
+      let bar0 = mainSpec.addBar(new TB.Bar('bar0', true, true));
+      let bar1 = mainSpec.addBar(new TB.Bar('bar1', true, true));
+      let bar2 = mainSpec.addBar(new TB.Bar('bar2', true, false));
+
+      let grp00 = bar0.addGroup(new TB.Group('grp00', true, true, false));
+      let grp01 = bar0.addGroup(new TB.Group('grp01', true, true, false));
+      let grp0x = bar0.addGroup(new TB.Group('grp0x', true, true, true));
+      let grp10 = bar1.addGroup(new TB.Group('grp10', true, true, false));
+      let grp11 = bar1.addGroup(new TB.Group('grp11', true, true, false));
+      let grp12 = bar1.addGroup(new TB.Group('grp12', true, false, false));
+      let grp20 = bar2.addGroup(new TB.Group('grp20', true, true, false));
+
+      let itm000 = grp00.addItem(new TB.Item('itm000'));
+      itm000.tipHtml('Hello Baby');
+      itm000.html('<i class="fa fa-edit"></i>');
+      itm000.onClick(function(item) {alert("I'm here!")});
+
+      let itm001 = grp00.addItem(new TB.Item('itm001'));
+      itm001.active(false);
+      itm001.html('<i class="fa fa-check"></i>');
+      itm001.onClick(function(item) {alert("I'm also here!")});
+
+      let itm010 = grp01.addItem(new TB.Item('itm010', false, true, true));
+      itm010.tipHtml('Hello Baby2');
+      itm010.html('A');
+      itm010.title('This is title (A)');
+      itm010.onClick(function(item) {alert("I'm here!")});
+
+      let itm011 = grp01.addItem(new TB.Item('itm011'));
+      itm011.html('B');
+      itm011.onClick(function(item) {alert("I'm also here!")});
+
+      let itm0x = grp0x.addItem(new TB.Item('itm0x'));
+      itm0x.html('<i class="fa fa-close"></i>');
+      itm0x.tipHtml('Cierra barra');
+      itm0x.onClick(function(item) {
+        this.hideThisBar();
+      });
+
+      let itm100 = grp10.addItem(new TB.Item('itm100'));
+      itm100.tipHtml('This is item OOOOOOOOOOOOOO');
+      itm100.html('O');
+      itm100.onClick(function(item) {alert("I'm OOOOOOOOOOOOOO")});
+
+      let itm101 = grp10.addItem(new TB.Item('itm101'));
+      itm101.active(false);
+      itm101.html('P');
+      itm101.onClick(function(item) {alert("I'm PPPPPPPPPPPPPP")});
+
+      let itm110 = grp11.addItem(new TB.Item('itm110'));
+      itm110.tipHtml('This is item QQQQQQQQQQQQQQ');
+      itm110.html('Q');
+      itm110.title('This is title (QQQQQQQQQQQQQQQQQ)');
+      itm110.onClick(function(item) {
+        let tgt1 = item.getElemByName('grp12')[0];
+        let tgt2 = item.getElemByName('bar2')[0];
+        if (tgt1.display()) {
+          tgt1.display(false);
+          tgt2.display(false);
+        } else {
+          tgt1.display(true);
+          tgt2.display(true);
+        }
+      });
+
+      let itm111 = grp11.addItem(new TB.Item('itm111'));
+      itm111.html('<svg class="svg-icon" viewBox="0 0 324 222" xmlns="http://www.w3.org/2000/svg"><path d="M 111 211 a 100 100, 0, 1, 1, 96 -130 a 70 70, 0, 1, 1, 40 130 h-108 v-90 m0 -10 l-50 50 l50 -50 l50 50" fill="transparent" stroke="#47abff" stroke-width="22" /></svg>');
+      itm111.onClick(function(item) {alert("I'm RRRRRRRRRRRRRR")});
+
+      let itm120 = grp12.addItem(new TB.Item('itm120', true, true));
+      itm120.html('<input type="text" /> <select><option></option><option>Option 1</option><option>Option 2</option></select>');
+      itm120.title('This is an input item');
+
+      let itm121 = grp12.addItem(new TB.Item('itm121'));
+      itm121.html('<i class="fa fa-check"></i>');
+
+      let itm122 = grp12.addItem(new TB.Item('itm122'));
+      itm122.html('<i class="fa fa-close"></i>');
+      itm122.onClick(function(item) {
+        this.hideThisGroup();
+      });
+
+      let itm200 = grp20.addItem(new TB.Item('itm200'));
+      itm200.tipHtml('This is item XXXXXXXXXXXXXX');
+      itm200.html('X');
+      itm200.onClick(function(item) {alert(item.type + ' ' + item.id)});
+
+      let itm201 = grp20.addItem(new TB.Item('itm201'));
+      itm201.active(false);
+      itm201.html('Y');
+      itm201.onClick(function(item) {alert("I'm YYYYYYYYYYYYYYYYYY")});
+    }
+  });
+});
+
+$(document).on('click', '.btnTest2', function() {
+  $('.test-bar2').toolBar({destroy:true});
+  return false;
+});
+
+$(document).on('click', '.btnTest3', function() {
+  let $bars = $('.test-bar2');
+  let $bars2 = $('.test-bar2');
+  $bars.testProp1 = 'myProp1';
+  $bars2.testProp2 = 'myProp2';
+  alert($bars.testProp1);
+  alert($bars2.testProp1);
+
+/*    
+  let $bar1 = $('.test-bar2').first();
+  $bars.testMethod = function (x) {alert('HELLO ' + x)};
+  alert(JSON.stringify($bars));
+  alert($bars.testProp1);
+  $bars.testMethod('Mongo');
+  $bars.each(function() {
+    let $bar = $(this);
+    $bar.prop11 = 'property1';
+    $bar.method1 = $bars.testMethod;
+    alert(JSON.stringify($bar));
+    alert($bar.method1('Pirulo'));
+  });
+  */
+  return false;
+});
+
+});
+</script>
+
+</body>
+</html>
